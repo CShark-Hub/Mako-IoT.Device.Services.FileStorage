@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>MakoIoT.Device.Services.FileStorage</id>
+    <version>$version$</version>
+    <title>MakoIoT.Device.Services.FileStorage</title>
+    <authors>CSHARK</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">LICENSE.md</license>
+    <releaseNotes>
+    </releaseNotes>
+    <readme>docs\README.md</readme>
+    <developmentDependency>false</developmentDependency>
+    <projectUrl>https://github.com/CShark-Hub/Mako-IoT.Device.Services.FileStorage</projectUrl>
+    <repository type="git" url="https://github.com/CShark-Hub/Mako-IoT.Device.Services.FileStorage" />
+    <copyright>Copyright (c) CSHARK Sp. z o. o.</copyright>
+    <description>MAKO-IoT file storage NVS Flash</description>
+    <tags>nanoFramework C# csharp netmf netnf mako-iot file storage nvs flash</tags>
+    <dependencies>
+      <dependency id="nanoFramework.CoreLibrary" version="1.12.0" />
+      <dependency id="nanoFramework.System.Collections" version="1.4.0" />
+      <dependency id="nanoFramework.System.Text" version="1.2.7" />
+      <dependency id="nanoFramework.System.IO.Streams" version="1.1.15" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="src\MakoIoT.Device.Services.FileStorage\bin\Release\MakoIoT.Device.Services.FileStorage.dll" target="lib\MakoIoT.Device.Services.FileStorage.dll" />
+    <file src="src\MakoIoT.Device.Services.FileStorage\bin\Release\MakoIoT.Device.Services.FileStorage.pdb" target="lib\MakoIoT.Device.Services.FileStorage.pdb" />
+    <file src="src\MakoIoT.Device.Services.FileStorage\bin\Release\MakoIoT.Device.Services.FileStorage.pdbx" target="lib\MakoIoT.Device.Services.FileStorage.pdbx" />
+    <file src="src\MakoIoT.Device.Services.FileStorage\bin\Release\MakoIoT.Device.Services.FileStorage.pe" target="lib\MakoIoT.Device.Services.FileStorage.pe" />
+    <file src="README.md" target="docs\" />
+    <file src="LICENSE.md" target="" />
+  </files>
+</package>
