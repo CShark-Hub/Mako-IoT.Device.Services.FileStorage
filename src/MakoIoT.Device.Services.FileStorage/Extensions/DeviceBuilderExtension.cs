@@ -1,5 +1,5 @@
-﻿using MakoIoT.Device.Services.DependencyInjection;
-using MakoIoT.Device.Services.Interface;
+﻿using MakoIoT.Device.Services.Interface;
+using nanoFramework.DependencyInjection;
 
 namespace MakoIoT.Device.Services.FileStorage.Extensions
 {
@@ -7,7 +7,7 @@ namespace MakoIoT.Device.Services.FileStorage.Extensions
     {
         public static IDeviceBuilder AddFileStorage(this IDeviceBuilder builder)
         {
-            DI.RegisterSingleton(typeof(IStorageService), typeof(FileStorageService));
+            builder.Services.AddSingleton(typeof(IStorageService), typeof(FileStorageService));
             return builder;
         }
     }
