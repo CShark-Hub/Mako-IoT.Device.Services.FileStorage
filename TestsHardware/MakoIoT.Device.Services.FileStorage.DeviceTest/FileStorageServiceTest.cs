@@ -19,7 +19,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
 
             sut.WriteToFile(fileName,text);
 
-            Assert.NotNull(File.Exists(sut.GetFilePath(fileName))); 
+            Assert.IsNotNull(File.Exists(sut.GetFilePath(fileName))); 
             
             File.Delete(sut.GetFilePath(fileName));
         }
@@ -34,7 +34,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
 
             sut.WriteToFile(fileName, text);
 
-            Assert.NotNull(File.Exists(sut.GetFilePath(fileName)));
+            Assert.IsNotNull(File.Exists(sut.GetFilePath(fileName)));
 
             using (var fs = new FileStream(sut.GetFilePath(fileName), FileMode.Open, FileAccess.Read))
             {
@@ -42,7 +42,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
                 fs.Read(buffer, 0, buffer.Length);
                 fs.Close();
                 var readText = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
-                Assert.Equal(text, readText);
+                Assert.AreEqual(text, readText);
             }
 
             File.Delete(sut.GetFilePath(fileName));
@@ -60,7 +60,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
 
             sut.WriteToFile(fileName, text1);
 
-            Assert.NotNull(File.Exists(sut.GetFilePath(fileName)));
+            Assert.IsNotNull(File.Exists(sut.GetFilePath(fileName)));
 
             sut.WriteToFile(fileName, text2);
 
@@ -70,7 +70,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
                 fs.Read(buffer, 0, buffer.Length);
                 fs.Close();
                 var readText = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
-                Assert.Equal(text2, readText);
+                Assert.AreEqual(text2, readText);
             }
 
             File.Delete(sut.GetFilePath(fileName));
@@ -90,9 +90,9 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
 
             File.Delete(sut.GetFilePath(fileName));
 
-            Assert.True(exists);
+            Assert.IsTrue(exists);
 
-            Assert.False(sut.FileExists(fileName));
+            Assert.IsFalse(sut.FileExists(fileName));
         }
 
         [TestMethod]
@@ -115,7 +115,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
 
             File.Delete(sut.GetFilePath(fileName));
 
-            Assert.Equal(text, readText);
+            Assert.AreEqual(text, readText);
         }
 
         [TestMethod]
@@ -127,7 +127,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
             if (File.Exists(sut.GetFilePath(fileName)))
                 File.Delete(sut.GetFilePath(fileName));
             
-            Assert.Throws(typeof(IOException), () => sut.ReadFile(fileName));
+            Assert.ThrowsException(typeof(IOException), () => sut.ReadFile(fileName));
         }
 
         [DataRow("file.ext", "I:\\file.ext")]
@@ -135,7 +135,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
         public void GetFilePath_without_directory(string filename, string result)
         {
             var sut = new FileStorageService(new DebugLogger(nameof(FileStorageServiceTest)));
-            Assert.Equal(result, sut.GetFilePath(filename));
+            Assert.AreEqual(result, sut.GetFilePath(filename));
         }
     }
 }
