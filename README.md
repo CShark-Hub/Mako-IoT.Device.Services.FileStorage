@@ -1,4 +1,5 @@
-# Project readme
+# Mako-IoT.Device.Services.FileStorage
+IStorageService implementation with NVS flash storage.
 
 ## How to manually sync fork
 - Clone repository and navigate into folder
