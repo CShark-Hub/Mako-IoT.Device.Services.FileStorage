@@ -24,7 +24,7 @@
       <dependency id="nanoFramework.System.IO.FileSystem" version="1.1.23" />
       <dependency id="nanoFramework.System.IO.Streams" version="1.1.38" />
       <dependency id="nanoFramework.System.Text" version="1.2.37" />
-      <dependency id="nanoFramework.DependencyInjection" version="1.0.35" />
+      <dependency id="nanoFramework.DependencyInjection" version="1.1.1" />
       <dependency id="MakoIoT.Device.Services.Interface" version="1.0.36.21434" />
     </dependencies>
   </metadata>
