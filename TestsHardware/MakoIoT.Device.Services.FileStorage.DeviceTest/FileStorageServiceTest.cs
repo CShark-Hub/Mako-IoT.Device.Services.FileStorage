@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Text;
-using nanoFramework.Logging.Debug;
 using nanoFramework.TestFramework;
 
 namespace MakoIoT.Device.Services.FileStorage.DeviceTest
@@ -15,7 +14,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
             string fileName = $"mako-test1-{DateTime.UtcNow:HHmmss}.txt";
             string text = "Hello!";
 
-            var sut = new FileStorageService(new DebugLogger(nameof(FileStorageServiceTest)));
+            var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
 
             sut.WriteToFile(fileName,text);
 
@@ -30,7 +29,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
             string fileName = $"mako-test2-{DateTime.UtcNow:HHmmss}.txt";
             string text = "Hello!\r\nfrom\r\nMAKO-IoT\r\n:)";
 
-            var sut = new FileStorageService(new DebugLogger(nameof(FileStorageServiceTest)));
+            var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
 
             sut.WriteToFile(fileName, text);
 
@@ -56,7 +55,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
             string text1 = "Hello!";
             string text2 = "Hello World!";
 
-            var sut = new FileStorageService(new DebugLogger(nameof(FileStorageServiceTest)));
+            var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
 
             sut.WriteToFile(fileName, text1);
 
@@ -82,7 +81,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
             string fileName = $"mako-test3-{DateTime.UtcNow:HHmmss}.txt";
 
             
-            var sut = new FileStorageService(new DebugLogger(nameof(FileStorageServiceTest)));
+            var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
 
             File.Create(sut.GetFilePath(fileName));
 
@@ -101,7 +100,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
             string fileName = $"mako-test3-{DateTime.UtcNow:HHmmss}.txt";
             string text = "Hello!";
 
-            var sut = new FileStorageService(new DebugLogger(nameof(FileStorageServiceTest)));
+            var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
 
             File.Create(sut.GetFilePath(fileName));
             byte[] buffer = Encoding.UTF8.GetBytes(text);
@@ -122,7 +121,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
         public void ReadFile_given_no_file_should_throw_exception()
         {
             string fileName = $"mako-test4-{DateTime.UtcNow:HHmmss}.txt";
-            var sut = new FileStorageService(new DebugLogger(nameof(FileStorageServiceTest)));
+            var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
 
             if (File.Exists(sut.GetFilePath(fileName)))
                 File.Delete(sut.GetFilePath(fileName));
@@ -134,7 +133,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
         [DataRow("I:\\file.ext", "I:\\file.ext")]
         public void GetFilePath_without_directory(string filename, string result)
         {
-            var sut = new FileStorageService(new DebugLogger(nameof(FileStorageServiceTest)));
+            var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
             Assert.AreEqual(result, sut.GetFilePath(filename));
         }
     }

@@ -9,11 +9,11 @@ namespace MakoIoT.Device.Services.FileStorage
 {
     public class FileStorageService : IStorageService, IStreamStorageService
     {
-        private readonly ILogger _logger;
+        private readonly ILog _logger;
 
         public const string Root = "I:";
 
-        public FileStorageService(ILogger logger)
+        public FileStorageService(ILog logger)
         {
             _logger = logger;
         }
@@ -21,7 +21,7 @@ namespace MakoIoT.Device.Services.FileStorage
 
         public void WriteToFile(string fileName, string text)
         {
-            _logger.LogTrace($"Writing to file [{fileName}]");
+            _logger.Trace($"Writing to file [{fileName}]");
 
             var filePath = GetFilePath(fileName);
             File.Create(filePath);
@@ -34,7 +34,7 @@ namespace MakoIoT.Device.Services.FileStorage
                 fs.Close();
             }
 
-            _logger.LogTrace($"File {fileName} written.");
+            _logger.Trace($"File {fileName} written.");
         }
 
         public StreamWriter WriteToFileStream(string fileName)
