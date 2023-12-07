@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using MakoIoT.Device.Services.FileStorage.Interface;
 using MakoIoT.Device.Services.Interface;
-using Microsoft.Extensions.Logging;
 
 namespace MakoIoT.Device.Services.FileStorage
 {
