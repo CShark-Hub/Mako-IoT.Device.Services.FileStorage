@@ -7,7 +7,7 @@ namespace MakoIoT.Device.Services.FileStorage.Extensions
     {
         public static IDeviceBuilder AddFileStorage(this IDeviceBuilder builder)
         {
-            builder.Services.AddSingleton(typeof(IStorageService), typeof(FileStorageService));
+            builder.Services.AddTransient(typeof(IStorageService), typeof(FileStorageService));
             return builder;
         }
     }
