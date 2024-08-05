@@ -58,7 +58,7 @@ namespace MakoIoT.Device.Services.FileStorage
         public StreamReader ReadFileStream(string fileName)
         {
             var filePath = GetFilePath(fileName);
-            return new StreamReader(new FileStream(filePath, FileMode.Open, FileAccess.Read));
+            return new MakoStreamReader(new FileStream(filePath, FileMode.Open, FileAccess.Read));
         }
 
         public void DeleteFile(string fileName)

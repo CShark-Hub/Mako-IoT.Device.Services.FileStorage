@@ -14,7 +14,7 @@ namespace MakoIoT.Device.Services.FileStorage
     /// <summary>
     /// Implements a <see cref="TextReader"/> that reads characters from a byte stream in a particular encoding.
     /// </summary>
-    public class MakoStreamReader : TextReader
+    public class MakoStreamReader : StreamReader
     {
         private long _pos = 0;
 
@@ -70,7 +70,7 @@ namespace MakoIoT.Device.Services.FileStorage
         /// <param name="stream">The stream to be read.</param>
         /// <exception cref="ArgumentNullException"><paramref name="stream"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException"><paramref name="stream"/> does not support reading.</exception>
-        public MakoStreamReader(Stream stream)
+        public MakoStreamReader(Stream stream) : base(stream)
         {
             if (stream == null)
             {
