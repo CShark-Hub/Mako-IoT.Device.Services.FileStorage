@@ -23,11 +23,10 @@ namespace MakoIoT.Device.Services.FileStorage
             _logger.Trace($"Writing to file [{fileName}]");
 
             var filePath = GetFilePath(fileName);
-            File.Create(filePath);
 
             byte[] buffer = Encoding.UTF8.GetBytes(text);
 
-            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite))
+            using (var fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
                 fs.Write(buffer, 0, buffer.Length);
                 fs.Close();
@@ -39,9 +38,8 @@ namespace MakoIoT.Device.Services.FileStorage
         public StreamWriter WriteToFileStream(string fileName)
         {
             var filePath = GetFilePath(fileName);
-            File.Create(filePath);
 
-            return new StreamWriter(new FileStream(filePath, FileMode.Open, FileAccess.Write));
+            return new StreamWriter(new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write));
         }
 
 
@@ -83,6 +81,7 @@ namespace MakoIoT.Device.Services.FileStorage
             return files;
         }
 
-        public string GetFilePath(string fileName) => fileName.StartsWith(Root) ? fileName : Path.Combine(Root, fileName);
+        public string GetFilePath(string fileName) =>
+            fileName.StartsWith(Root) ? fileName : Path.Combine(Root, fileName);
     }
 }
