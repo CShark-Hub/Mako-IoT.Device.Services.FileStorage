@@ -28,7 +28,7 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
         public void WriteToFile_should_write_text_to_file()
         {
             string fileName = $"mako-test2-{DateTime.UtcNow:HHmmss}.txt";
-            string text = "Hello!\r\nfrom\r\nMAKO-IoT\r\n:)";
+            string text = "{\"Enabled\":true,\"MaxFileSize\":102400,\"LogLevel\":0}";
         
             var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
         
@@ -53,8 +53,8 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
         public void WriteToFile_should_overwrite_existing_file()
         {
             string fileName = $"mako-test3-{DateTime.UtcNow:HHmmss}.txt";
-            string text1 = "Hello!";
-            string text2 = "Hello World!";
+            string text1 = "Hello, World!";
+            string text2 = "Hello!";
         
             var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
         

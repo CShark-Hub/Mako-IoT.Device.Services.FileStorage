@@ -26,7 +26,7 @@ namespace MakoIoT.Device.Services.FileStorage
 
             byte[] buffer = Encoding.UTF8.GetBytes(text);
 
-            using (var fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
             {
                 fs.Write(buffer, 0, buffer.Length);
                 fs.Close();
@@ -39,7 +39,7 @@ namespace MakoIoT.Device.Services.FileStorage
         {
             var filePath = GetFilePath(fileName);
 
-            return new StreamWriter(new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write));
+            return new StreamWriter(new FileStream(filePath, FileMode.Create, FileAccess.Write));
         }
 
 
