@@ -385,16 +385,10 @@ namespace MakoIoT.Device.Services.FileStorage
                     return new string(readLineBuff, 0, curPos);
                 }
 
-                // check for \r and \r\n
+                // skip \r and wait for \n, we can't use Peek() because it's broken :(
                 if (readLineBuff[curPos] == '\r')
                 {
-                    // If the next character is \n eat it
-                    if (Peek() == '\n')
-                    {
-                        _ = Read();
-                    }
-
-                    return new string(readLineBuff, 0, curPos);
+                    continue;
                 }
 
                 // move to the next byte
