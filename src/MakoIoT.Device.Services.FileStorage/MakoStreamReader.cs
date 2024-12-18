@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Text;
+using MakoIoT.Device.Services.FileStorage.Extensions;
 
 namespace MakoIoT.Device.Services.FileStorage
 {
@@ -16,8 +17,6 @@ namespace MakoIoT.Device.Services.FileStorage
     /// </summary>
     public class MakoStreamReader : StreamReader
     {
-        private long _pos = 0;
-
         private const int c_MaxReadLineLen = 0xFFFF;
         private const int c_BufferSize = 512;
 
@@ -89,8 +88,6 @@ namespace MakoIoT.Device.Services.FileStorage
             BaseStream = stream;
             _decoder = CurrentEncoding.GetDecoder();
             _disposed = false;
-
-            _pos = 0;
         }
 
         /// <summary>
@@ -164,13 +161,13 @@ namespace MakoIoT.Device.Services.FileStorage
                 try
                 {
                     // retry read until response timeout expires
-                    while (BaseStream.Length > 0 && totRead < _buffer.Length)
+                    while (BaseStream.SafeGetLength() > 0 && totRead < _buffer.Length)
                     {
                         int len = (int)(_buffer.Length - totRead);
 
-                        if (len > BaseStream.Length)
+                        if (len > BaseStream.SafeGetLength())
                         {
-                            len = (int)BaseStream.Length;
+                            len = (int)BaseStream.SafeGetLength();
                         }
 
                         len = BaseStream.Read(_buffer, totRead, len);
@@ -242,7 +239,7 @@ namespace MakoIoT.Device.Services.FileStorage
                     int readCount = _buffer.Length;
 
                     // Put it to the maximum of available data and readCount
-                    readCount = readCount > (int)BaseStream.Length ? (int)BaseStream.Length : readCount;
+                    readCount = readCount > (int)BaseStream.SafeGetLength() ? (int)BaseStream.SafeGetLength() : readCount;
 
                     if (readCount == 0)
                     {
@@ -433,7 +430,7 @@ namespace MakoIoT.Device.Services.FileStorage
 
         private char[] ReadSeekableStream()
         {
-            char[] chars = new char[(int)BaseStream.Length];
+            char[] chars = new char[(int)BaseStream.SafeGetLength()];
 
             _ = Read(chars, 0, chars.Length);
 
@@ -516,9 +513,7 @@ namespace MakoIoT.Device.Services.FileStorage
 
                     if (count > spaceLeft) count = spaceLeft;
 
-                    BaseStream.Position = _pos;
                     int read = BaseStream.Read(_buffer, _curBufLen, count);
-                    _pos += read;
 
                     if (read == 0) break;
 
