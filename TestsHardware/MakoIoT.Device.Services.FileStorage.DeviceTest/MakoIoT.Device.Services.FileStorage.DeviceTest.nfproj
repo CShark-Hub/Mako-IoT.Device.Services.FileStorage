@@ -29,7 +29,7 @@
   <ItemGroup>
     <Compile Include="DebugLog.cs" />
     <Compile Include="FileStorageServiceTest.cs" />
-    <Compile Include="StreamExtensionTest.cs" />
+    <Compile Include="StaticLengthStreamTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MakoIoT.Device.Services.Interface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">

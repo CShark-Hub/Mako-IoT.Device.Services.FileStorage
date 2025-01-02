@@ -20,10 +20,9 @@
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
     <Compile Include="Extensions\DeviceBuilderExtension.cs" />
-    <Compile Include="Extensions\StreamExtension.cs" />
     <Compile Include="FileStorageService.cs" />
     <Compile Include="Interface\IStreamStorageService.cs" />
-    <Compile Include="MakoStreamReader.cs" />
+    <Compile Include="StaticLengthStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MakoIoT.Device.Services.Interface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
