@@ -78,10 +78,13 @@ namespace MakoIoT.Device.Services.FileStorage
             {
                 files[i] = Path.GetFileName(files[i]);
             }
+
             return files;
         }
 
         public string GetFilePath(string fileName) =>
             fileName.StartsWith(Root) ? fileName : Path.Combine(Root, fileName);
+
+        public long GetFileSize(string fileName) => new FileInfo(GetFilePath(fileName)).Length;
     }
 }

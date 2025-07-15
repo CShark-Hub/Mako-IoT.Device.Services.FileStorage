@@ -139,5 +139,28 @@ namespace MakoIoT.Device.Services.FileStorage.DeviceTest
             var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
             Assert.AreEqual(result, sut.GetFilePath(filename));
         }
+
+        [TestMethod]
+        public void GetFileSize_should_return_correct_file_size()
+        {
+            string fileName = $"mako-test-size-{DateTime.UtcNow:HHmmss}.txt";
+            string text = "Test file size!";
+            var sut = new FileStorageService(new DebugLog(nameof(FileStorageServiceTest)));
+
+            // Write known content to file
+            sut.WriteToFile(fileName, text);
+
+            // Get expected size in bytes
+            long expectedSize = Encoding.UTF8.GetBytes(text).Length;
+
+            // Act
+            long actualSize = sut.GetFileSize(fileName);
+
+            // Cleanup
+            File.Delete(sut.GetFilePath(fileName));
+
+            // Assert
+            Assert.AreEqual(expectedSize, actualSize);
+        }
     }
 }
